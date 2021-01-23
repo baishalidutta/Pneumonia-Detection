@@ -6,13 +6,13 @@ __version__ = "0.1"
 # -------------------------------------------------------------------------
 #                           Importing the libraries
 # -------------------------------------------------------------------------
-# import tensorflow as tf
-from keras.models import Sequential
+import os
+
+import matplotlib.pyplot as plt
 from keras.layers import Conv2D, Activation, MaxPooling2D, Dense, Flatten
+from keras.models import Sequential
 from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
-import matplotlib.pyplot as plt
-import os
 
 # MacOS specific issue for OpenMP runtime (workaround)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -21,11 +21,10 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 #                               Configurations
 # -------------------------------------------------------------------------
 data_dir = '../data/'
-training_dir = data_dir + '/train/'
-validation_dir = data_dir + '/val/'
+training_data_dir = data_dir + '/train/'
+validation_data_dir = data_dir + '/val/'
 batch_size = 32
 epochs = 100
-
 
 # -------------------------------------------------------------------------
 #                   Building the CNN Model Architecture
@@ -71,7 +70,7 @@ def build_cnn_model():
 #                Data Preprocessing and CNN Model Training
 # -------------------------------------------------------------------------
 def train_cnn_model(cnn_model):
-    detection_classes = ('PNEUMONIA', 'NORMAL')
+    detection_classes = ('NORMAL', 'PNEUMONIA')
     # data generator on training dataset
     training_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
@@ -79,10 +78,10 @@ def train_cnn_model(cnn_model):
         featurewise_std_normalization=True)
 
     # preprocessing the training set
-    training_set = training_datagen.flow_from_directory(training_dir,
-                                                        classes=detection_classes,
-                                                        batch_size=batch_size,
-                                                        target_size=(224, 224))
+    training_dataset = training_datagen.flow_from_directory(training_data_dir,
+                                                            classes=detection_classes,
+                                                            batch_size=batch_size,
+                                                            target_size=(224, 224))
 
     # data generator on validation dataset
     validation_datagen = ImageDataGenerator(
@@ -91,15 +90,15 @@ def train_cnn_model(cnn_model):
         featurewise_std_normalization=True)
 
     # preprocessing the validation set
-    validation_set = validation_datagen.flow_from_directory(validation_dir,
-                                                            classes=detection_classes,
-                                                            batch_size=batch_size,
-                                                            target_size=(224, 224))
+    validation_dataset = validation_datagen.flow_from_directory(validation_data_dir,
+                                                                classes=detection_classes,
+                                                                batch_size=batch_size,
+                                                                target_size=(224, 224))
 
-    history = cnn_model.fit_generator(training_set,
-                                      steps_per_epoch=len(training_set),
-                                      validation_data=validation_set,
-                                      validation_steps=len(validation_set),
+    history = cnn_model.fit_generator(training_dataset,
+                                      steps_per_epoch=len(training_dataset),
+                                      validation_data=validation_dataset,
+                                      validation_steps=len(validation_dataset),
                                       epochs=epochs,
                                       verbose=1)
     # save the CNN model
