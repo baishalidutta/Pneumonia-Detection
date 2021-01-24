@@ -41,23 +41,27 @@ def build_cnn_model():
     cnn_model = Sequential()
 
     # First Block of CNN
-    cnn_model.add(Conv2D(32, (3, 3), padding='same', input_shape=(224, 224, 3)))
+    cnn_model.add(Conv2D(8, (5, 5), padding='same', input_shape=(224, 224, 3)))
     cnn_model.add(Activation('relu'))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Second Block of CNN
-    cnn_model.add(Conv2D(64, (3, 3), padding='same'))
+    cnn_model.add(Conv2D(8, (3, 3), padding='same'))
     cnn_model.add(Activation('relu'))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Third Block of CNN
-    cnn_model.add(Conv2D(128, (3, 3), padding='same'))
+    cnn_model.add(Conv2D(16, (3, 3), padding='same'))
+    cnn_model.add(Activation('relu'))
+
+    #  Fourth Block of CNN
+    cnn_model.add(Conv2D(16, (3, 3), padding='same'))
     cnn_model.add(Activation('relu'))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Flatten and Fully Connected Layer
     cnn_model.add(Flatten())
-    cnn_model.add(Dense(1000))
+    cnn_model.add(Dense(10))
     cnn_model.add(Activation('relu'))
 
     #  Softmax Classifier
@@ -109,8 +113,8 @@ def train_cnn_model(cnn_model):
 
     # early stopping
     early_stop = EarlyStopping(monitor='val_accuracy',
-                       mode='max',
-                       patience=10)
+                               mode='max',
+                               patience=10)
 
     history = cnn_model.fit_generator(training_dataset,
                                       steps_per_epoch=len(training_dataset),
