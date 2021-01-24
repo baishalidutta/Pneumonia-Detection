@@ -20,16 +20,22 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 # -------------------------------------------------------------------------
 #                               Configurations
 # -------------------------------------------------------------------------
-data_dir = '../data/'
-training_data_dir = data_dir + '/train/'
-validation_data_dir = data_dir + '/val/'
-batch_size = 32
-epochs = 100
+DATA_DIR = '../data/'
+TRAINING_DATA_DIR = DATA_DIR + '/train/'
+VALIDATION_DATA_DIR = DATA_DIR + '/val/'
+DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
+BATCH_SIZE = 32
+EPOCHS = 100
+
 
 # -------------------------------------------------------------------------
 #                   Building the CNN Model Architecture
 # -------------------------------------------------------------------------
 def build_cnn_model():
+    """
+    Specifies the CNN architecture which consists of the following steps
+    :return: the CNN model
+    """
     cnn_model = Sequential()
 
     # First Block of CNN
@@ -70,7 +76,11 @@ def build_cnn_model():
 #                Data Preprocessing and CNN Model Training
 # -------------------------------------------------------------------------
 def train_cnn_model(cnn_model):
-    detection_classes = ('NORMAL', 'PNEUMONIA')
+    """
+    Trains the CNN model on the training and validation dataset
+    :param cnn_model: the CNN model
+    :return: the training history
+    """
     # data generator on training dataset
     training_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
@@ -78,9 +88,9 @@ def train_cnn_model(cnn_model):
         featurewise_std_normalization=True)
 
     # preprocessing the training set
-    training_dataset = training_datagen.flow_from_directory(training_data_dir,
-                                                            classes=detection_classes,
-                                                            batch_size=batch_size,
+    training_dataset = training_datagen.flow_from_directory(TRAINING_DATA_DIR,
+                                                            classes=DETECTION_CLASSES,
+                                                            batch_size=BATCH_SIZE,
                                                             target_size=(224, 224))
 
     # data generator on validation dataset
@@ -90,16 +100,16 @@ def train_cnn_model(cnn_model):
         featurewise_std_normalization=True)
 
     # preprocessing the validation set
-    validation_dataset = validation_datagen.flow_from_directory(validation_data_dir,
-                                                                classes=detection_classes,
-                                                                batch_size=batch_size,
+    validation_dataset = validation_datagen.flow_from_directory(VALIDATION_DATA_DIR,
+                                                                classes=DETECTION_CLASSES,
+                                                                batch_size=BATCH_SIZE,
                                                                 target_size=(224, 224))
 
     history = cnn_model.fit_generator(training_dataset,
                                       steps_per_epoch=len(training_dataset),
                                       validation_data=validation_dataset,
                                       validation_steps=len(validation_dataset),
-                                      epochs=epochs,
+                                      epochs=EPOCHS,
                                       verbose=1)
     # save the CNN model
     cnn_model.save('pneumonia_detection_cnn_model.h5')
@@ -111,6 +121,11 @@ def train_cnn_model(cnn_model):
 #    Plotting the training history for further hyperparameter tuning
 # -------------------------------------------------------------------------
 def plot_training_history(history):
+    """
+    Generates plots for accuracy and loss
+    :param history: the training history
+    :return: generated plots
+    """
     #  "Accuracy"
     plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
@@ -119,6 +134,7 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.show()
+    plt.savefig("../plots/accuracy.jpeg")
 
     # "Loss"
     plt.plot(history.history['loss'])
@@ -128,6 +144,7 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.show()
+    plt.savefig("../plots/loss.jpeg")
 
 
 # -------------------------------------------------------------------------

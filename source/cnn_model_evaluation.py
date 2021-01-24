@@ -7,29 +7,32 @@ __version__ = "0.1"
 #                           Importing the libraries
 # -------------------------------------------------------------------------
 import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt_false_positive_vs_true_positive
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
-from sklearn.metrics import accuracy_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, \
-    roc_auc_score
+from sklearn.metrics import accuracy_score, roc_curve, confusion_matrix, \
+    classification_report, precision_score, recall_score, f1_score, roc_auc_score
 
 # -------------------------------------------------------------------------
 #                               Configurations
 # -------------------------------------------------------------------------
-data_dir = '../data/'
-test_data_dir = data_dir + '/test/'
-batch_size = 32
-epochs = 100
+MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
+DATA_DIR = '../data/'
+TEST_DATA_DIR = DATA_DIR + '/test/'
+BATCH_SIZE = 32
+EPOCHS = 100
+DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
 
 
 # -------------------------------------------------------------------------
 #                         Evaluating trained CNN Model
 # -------------------------------------------------------------------------
 def evaluate_cnn_model():
-    detection_classes = ('NORMAL', 'PNEUMONIA')
-
+    """
+    Loads the pre-trained model and executes the model on the test data.
+    Prints the model evaluation results and plots the ROC curve
+    """
     # load the trained CNN model
-    cnn_model = load_model('../model/pneumonia_detection_cnn_model.h5')
+    cnn_model = load_model(MODEL_LOC)
 
     # data generator on test dataset
     test_datagen = ImageDataGenerator(
@@ -38,11 +41,11 @@ def evaluate_cnn_model():
         featurewise_std_normalization=True)
 
     # preprocessing the test set
-    test_dataset = test_datagen.flow_from_directory(test_data_dir,
+    test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
                                                     target_size=(224, 224),
-                                                    classes=detection_classes,
+                                                    classes=DETECTION_CLASSES,
                                                     shuffle=False,
-                                                    batch_size=batch_size)
+                                                    batch_size=BATCH_SIZE)
 
     # storing the true classes of the test dataset
     y_true = test_dataset.classes
@@ -61,21 +64,13 @@ def evaluate_cnn_model():
     print('\nConfusion Matrix\n -------------------------')
     print(confusion_matrix(y_true, y_pred_binary))
 
+    # classification report
     # accuracy: (tp + tn) / (p + n)
-    accuracy = accuracy_score(y_true, y_pred_binary)
-    print('Accuracy: %f' % accuracy)
-
     # precision tp / (tp + fp)
-    precision = precision_score(y_true, y_pred_binary)
-    print('Precision: %f' % precision)
-
     # recall: tp / (tp + fn)
-    recall = recall_score(y_true, y_pred_binary)
-    print('Recall: %f' % recall)
-
-    # f1: 2 tp / (2 tp + fp + fn)
-    f1 = f1_score(y_true, y_pred_binary)
-    print('F1 score: %f' % f1)
+    # f1_score: 2 tp / (2 tp + fp + fn)
+    print('\nClassification Report\n -------------------------')
+    print(classification_report(y_true, y_pred_binary))
 
     # ROC AUC
     auc = roc_auc_score(y_true, y_pred_prob)
@@ -86,12 +81,11 @@ def evaluate_cnn_model():
 
     # plot the roc curve for the model
     plt.figure()
-    plt_false_positive_vs_true_positive.plot(fpr, tpr, linestyle='--', label='')
-    plt_false_positive_vs_true_positive.xlabel('False Positive Rate')
-    plt_false_positive_vs_true_positive.ylabel('True Positive Rate')
-    plt_false_positive_vs_true_positive.legend()
-    plt_false_positive_vs_true_positive.show()
-    plt_false_positive_vs_true_positive.savefig('ROC_Curve.jpeg')
+    plt.plot(fpr, tpr, linestyle='--')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.show()
+    plt.savefig("../plots/ROC_Curve.jpeg")
 
 
 # -------------------------------------------------------------------------
