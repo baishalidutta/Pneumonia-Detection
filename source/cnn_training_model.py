@@ -13,6 +13,7 @@ from keras.layers import Conv2D, Activation, MaxPooling2D, Dense, Flatten
 from keras.models import Sequential
 from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import EarlyStopping
 
 # MacOS specific issue for OpenMP runtime (workaround)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -20,6 +21,7 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 # -------------------------------------------------------------------------
 #                               Configurations
 # -------------------------------------------------------------------------
+MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
 DATA_DIR = '../data/'
 TRAINING_DATA_DIR = DATA_DIR + '/train/'
 VALIDATION_DATA_DIR = DATA_DIR + '/val/'
@@ -105,14 +107,20 @@ def train_cnn_model(cnn_model):
                                                                 batch_size=BATCH_SIZE,
                                                                 target_size=(224, 224))
 
+    # early stopping
+    early_stop = EarlyStopping(monitor='val_accuracy',
+                       mode='max',
+                       patience=10)
+
     history = cnn_model.fit_generator(training_dataset,
                                       steps_per_epoch=len(training_dataset),
                                       validation_data=validation_dataset,
                                       validation_steps=len(validation_dataset),
                                       epochs=EPOCHS,
+                                      callbacks=[early_stop],
                                       verbose=1)
     # save the CNN model
-    cnn_model.save('pneumonia_detection_cnn_model.h5')
+    cnn_model.save(MODEL_LOC)
 
     return history
 
