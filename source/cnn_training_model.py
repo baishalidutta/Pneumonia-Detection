@@ -91,7 +91,12 @@ def train_cnn_model(cnn_model):
     training_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
         featurewise_center=True,
-        featurewise_std_normalization=True)
+        featurewise_std_normalization=True,
+        rotation_range=10,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        zoom_range=0.2,
+        brightness_range=[0.2,1.0])
 
     # preprocessing the training set
     training_dataset = training_datagen.flow_from_directory(TRAINING_DATA_DIR,
@@ -103,7 +108,12 @@ def train_cnn_model(cnn_model):
     validation_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
         featurewise_center=True,
-        featurewise_std_normalization=True)
+        featurewise_std_normalization=True,
+        rotation_range=10,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        zoom_range=0.2,
+        brightness_range=[0.2, 1.0])
 
     # preprocessing the validation set
     validation_dataset = validation_datagen.flow_from_directory(VALIDATION_DATA_DIR,
