@@ -9,7 +9,8 @@ __version__ = "0.1"
 import os
 
 import matplotlib.pyplot as plt
-from keras.layers import Conv2D, Activation, MaxPooling2D, Dense, Flatten
+from keras.layers import Conv2D, Activation, MaxPooling2D, \
+    Dense, Flatten, LeakyReLU
 from keras.models import Sequential
 from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
@@ -42,27 +43,27 @@ def build_cnn_model():
 
     # First Block of CNN
     cnn_model.add(Conv2D(8, (5, 5), padding='same', input_shape=(224, 224, 3)))
-    cnn_model.add(Activation('relu'))
+    cnn_model.add(LeakyReLU(alpha=0.1))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Second Block of CNN
     cnn_model.add(Conv2D(8, (3, 3), padding='same'))
-    cnn_model.add(Activation('relu'))
+    cnn_model.add(LeakyReLU(alpha=0.1))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Third Block of CNN
     cnn_model.add(Conv2D(16, (3, 3), padding='same'))
-    cnn_model.add(Activation('relu'))
+    cnn_model.add(LeakyReLU(alpha=0.1))
 
     #  Fourth Block of CNN
     cnn_model.add(Conv2D(16, (3, 3), padding='same'))
-    cnn_model.add(Activation('relu'))
+    cnn_model.add(LeakyReLU(alpha=0.1))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Flatten and Fully Connected Layer
     cnn_model.add(Flatten())
     cnn_model.add(Dense(10))
-    cnn_model.add(Activation('relu'))
+    cnn_model.add(LeakyReLU(alpha=0.1))
 
     #  Softmax Classifier
     cnn_model.add(Dense(2))
@@ -91,12 +92,7 @@ def train_cnn_model(cnn_model):
     training_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
         featurewise_center=True,
-        featurewise_std_normalization=True,
-        rotation_range=10,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        zoom_range=0.2,
-        brightness_range=[0.2,1.0])
+        featurewise_std_normalization=True)
 
     # preprocessing the training set
     training_dataset = training_datagen.flow_from_directory(TRAINING_DATA_DIR,
@@ -108,12 +104,7 @@ def train_cnn_model(cnn_model):
     validation_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
         featurewise_center=True,
-        featurewise_std_normalization=True,
-        rotation_range=10,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        zoom_range=0.2,
-        brightness_range=[0.2, 1.0])
+        featurewise_std_normalization=True)
 
     # preprocessing the validation set
     validation_dataset = validation_datagen.flow_from_directory(VALIDATION_DATA_DIR,
@@ -156,7 +147,6 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.savefig("../plots/accuracy.jpeg")
-    plt.show()
 
     # "Loss"
     plt.plot(history.history['loss'])
@@ -166,7 +156,6 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.savefig("../plots/loss.jpeg")
-    plt.show()
 
 
 # -------------------------------------------------------------------------
