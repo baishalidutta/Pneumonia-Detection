@@ -19,7 +19,6 @@ MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
 DATA_DIR = '../data/'
 TEST_DATA_DIR = DATA_DIR + '/test/'
 BATCH_SIZE = 32
-EPOCHS = 100
 DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
 
 
@@ -84,8 +83,8 @@ def evaluate_cnn_model():
     plt.plot(fpr, tpr, linestyle='--')
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
+    plt.savefig('../plots/ROC_Curve.jpeg')
     plt.show()
-    plt.savefig("../plots/ROC_Curve.jpeg")
 
 
 # -------------------------------------------------------------------------

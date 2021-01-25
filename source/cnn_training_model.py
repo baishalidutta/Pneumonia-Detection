@@ -145,8 +145,8 @@ def plot_training_history(history):
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
-    plt.show()
     plt.savefig("../plots/accuracy.jpeg")
+    plt.show()
 
     # "Loss"
     plt.plot(history.history['loss'])
@@ -155,8 +155,8 @@ def plot_training_history(history):
     plt.ylabel('loss')
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
-    plt.show()
     plt.savefig("../plots/loss.jpeg")
+    plt.show()
 
 
 # -------------------------------------------------------------------------
