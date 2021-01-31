@@ -9,8 +9,8 @@ __version__ = "0.1"
 import matplotlib.pyplot as plt
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
-from sklearn.metrics import accuracy_score, roc_curve, confusion_matrix, \
-    classification_report, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import roc_curve, confusion_matrix, \
+    classification_report, roc_auc_score
 
 # -------------------------------------------------------------------------
 #                               Configurations
@@ -35,14 +35,13 @@ def evaluate_cnn_model():
 
     # data generator on test dataset
     test_datagen = ImageDataGenerator(
-        rescale=1.0 / 255.0,
-        featurewise_center=True,
-        featurewise_std_normalization=True)
+        rescale=1.0 / 255.0)
 
     # preprocessing the test set
     test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
                                                     target_size=(224, 224),
                                                     classes=DETECTION_CLASSES,
+                                                    class_mode='binary',
                                                     shuffle=False,
                                                     batch_size=BATCH_SIZE)
 
@@ -50,7 +49,7 @@ def evaluate_cnn_model():
     y_true = test_dataset.classes
 
     # predicting the classes of the test dataset
-    y_pred = cnn_model.predict_generator(test_dataset, steps=len(test_dataset), verbose=1)
+    y_pred = cnn_model.predict(test_dataset, steps=len(test_dataset), verbose=1)
     # Storing the predicted probability
     y_pred_prob = y_pred[:, 1]
     # Storing the binary classes for the predictions

@@ -9,12 +9,11 @@ __version__ = "0.1"
 import os
 
 import matplotlib.pyplot as plt
-from keras.layers import Conv2D, Activation, MaxPooling2D, \
-    Dense, Flatten, LeakyReLU
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.layers import Conv2D, MaxPooling2D, SeparableConv2D, \
+    Dense, Flatten, BatchNormalization, Dropout
 from keras.models import Sequential
-from keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
-from keras.callbacks import EarlyStopping
 
 # MacOS specific issue for OpenMP runtime (workaround)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -25,7 +24,7 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
 DATA_DIR = '../data/'
 TRAINING_DATA_DIR = DATA_DIR + '/train/'
-VALIDATION_DATA_DIR = DATA_DIR + '/val/'
+TEST_DATA_DIR = DATA_DIR + '/test/'
 DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
 BATCH_SIZE = 32
 EPOCHS = 100
@@ -42,39 +41,53 @@ def build_cnn_model():
     cnn_model = Sequential()
 
     # First Block of CNN
-    cnn_model.add(Conv2D(8, (5, 5), padding='same', input_shape=(224, 224, 3)))
-    cnn_model.add(LeakyReLU(alpha=0.1))
+    cnn_model.add(Conv2D(16, (3, 3), padding='same', input_shape=(224, 224, 3), activation='relu'))
+    cnn_model.add(Conv2D(16, (3, 3), padding='same', activation='relu'))
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Second Block of CNN
-    cnn_model.add(Conv2D(8, (3, 3), padding='same'))
-    cnn_model.add(LeakyReLU(alpha=0.1))
+    cnn_model.add(SeparableConv2D(32, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(SeparableConv2D(32, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(BatchNormalization())
     cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Third Block of CNN
-    cnn_model.add(Conv2D(16, (3, 3), padding='same'))
-    cnn_model.add(LeakyReLU(alpha=0.1))
+    cnn_model.add(SeparableConv2D(64, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(SeparableConv2D(64, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(BatchNormalization())
+    cnn_model.add(MaxPooling2D((2, 2)))
 
     #  Fourth Block of CNN
-    cnn_model.add(Conv2D(16, (3, 3), padding='same'))
-    cnn_model.add(LeakyReLU(alpha=0.1))
+    cnn_model.add(SeparableConv2D(128, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(SeparableConv2D(128, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(BatchNormalization())
     cnn_model.add(MaxPooling2D((2, 2)))
+    cnn_model.add(Dropout(rate=0.2))
+
+    #  Fifth Block of CNN
+    cnn_model.add(SeparableConv2D(256, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(SeparableConv2D(256, (3, 3), padding='same', activation='relu'))
+    cnn_model.add(BatchNormalization())
+    cnn_model.add(MaxPooling2D((2, 2)))
+    cnn_model.add(Dropout(rate=0.2))
 
     #  Flatten and Fully Connected Layer
     cnn_model.add(Flatten())
-    cnn_model.add(Dense(10))
-    cnn_model.add(LeakyReLU(alpha=0.1))
+    cnn_model.add(Dense(units=512, activation='relu'))
+    cnn_model.add(Dropout(rate=0.7))
+    cnn_model.add(Dense(units=128, activation='relu'))
+    cnn_model.add(Dropout(rate=0.5))
+    cnn_model.add(Dense(units=64, activation='relu'))
+    cnn_model.add(Dropout(rate=0.3))
 
     #  Softmax Classifier
-    cnn_model.add(Dense(2))
-    cnn_model.add(Activation('softmax'))
+    cnn_model.add(Dense(units=2, activation='softmax'))
 
     #  Display model
     cnn_model.summary()
 
     # compile model
-    opt = SGD(learning_rate=0.001)
-    cnn_model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
+    cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
     return cnn_model
 
@@ -89,43 +102,45 @@ def train_cnn_model(cnn_model):
     :return: the training history
     """
     # data generator on training dataset
-    training_datagen = ImageDataGenerator(
+    train_generator = ImageDataGenerator(
         rescale=1.0 / 255.0,
-        featurewise_center=True,
-        featurewise_std_normalization=True)
+        shear_range=0.2,
+        vertical_flip=True,
+        rotation_range=10,
+        zoom_range=0.3)
 
     # preprocessing the training set
-    training_dataset = training_datagen.flow_from_directory(TRAINING_DATA_DIR,
-                                                            classes=DETECTION_CLASSES,
-                                                            batch_size=BATCH_SIZE,
-                                                            target_size=(224, 224))
+    training_dataset = train_generator.flow_from_directory(TRAINING_DATA_DIR,
+                                                           classes=DETECTION_CLASSES,
+                                                           shuffle=True,
+                                                           batch_size=BATCH_SIZE,
+                                                           target_size=(224, 224))
 
-    # data generator on validation dataset
-    validation_datagen = ImageDataGenerator(
-        rescale=1.0 / 255.0,
-        featurewise_center=True,
-        featurewise_std_normalization=True)
+    # data generator on test dataset
+    test_generator = ImageDataGenerator(
+        rescale=1.0 / 255.0)
 
     # preprocessing the validation set
-    validation_dataset = validation_datagen.flow_from_directory(VALIDATION_DATA_DIR,
-                                                                classes=DETECTION_CLASSES,
-                                                                batch_size=BATCH_SIZE,
-                                                                target_size=(224, 224))
+    test_dataset = test_generator.flow_from_directory(TEST_DATA_DIR,
+                                                      classes=DETECTION_CLASSES,
+                                                      shuffle=False,
+                                                      batch_size=BATCH_SIZE,
+                                                      target_size=(224, 224))
 
-    # early stopping
-    early_stop = EarlyStopping(monitor='val_accuracy',
-                               mode='max',
-                               patience=10)
+    # callbacks
+    early_stop = EarlyStopping(monitor='val_loss', patience=10, mode='min', min_delta=0.001, restore_best_weights=True)
+    checkpoint = ModelCheckpoint(filepath=MODEL_LOC, monitor='val_loss', save_best_only=True, mode='min')
 
-    history = cnn_model.fit_generator(training_dataset,
-                                      steps_per_epoch=len(training_dataset),
-                                      validation_data=validation_dataset,
-                                      validation_steps=len(validation_dataset),
-                                      epochs=EPOCHS,
-                                      callbacks=[early_stop],
-                                      verbose=1)
+    history = cnn_model.fit(training_dataset,
+                            steps_per_epoch=len(training_dataset),
+                            validation_data=test_dataset,
+                            validation_steps=len(test_dataset),
+                            epochs=EPOCHS,
+                            callbacks=[early_stop, checkpoint],
+                            verbose=1)
+
     # save the CNN model
-    cnn_model.save(MODEL_LOC)
+    #cnn_model.save(MODEL_LOC)
 
     return history
 
@@ -147,6 +162,7 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.savefig("../plots/accuracy.jpeg")
+    plt.show()
 
     # "Loss"
     plt.plot(history.history['loss'])
@@ -156,6 +172,7 @@ def plot_training_history(history):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.savefig("../plots/loss.jpeg")
+    plt.show()
 
 
 # -------------------------------------------------------------------------
