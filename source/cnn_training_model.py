@@ -101,8 +101,8 @@ def train_cnn_model(cnn_model):
     :param cnn_model: the CNN model
     :return: the training history
     """
-    # data generator on training dataset
-    train_generator = ImageDataGenerator(
+    # data generator on training dataset, data augmentation applied
+    train_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0,
         shear_range=0.2,
         vertical_flip=True,
@@ -110,27 +110,36 @@ def train_cnn_model(cnn_model):
         zoom_range=0.3)
 
     # preprocessing the training set
-    training_dataset = train_generator.flow_from_directory(TRAINING_DATA_DIR,
-                                                           classes=DETECTION_CLASSES,
-                                                           shuffle=True,
-                                                           batch_size=BATCH_SIZE,
-                                                           target_size=(224, 224))
+    training_dataset = train_datagen.flow_from_directory(TRAINING_DATA_DIR,
+                                                         classes=DETECTION_CLASSES,
+                                                         shuffle=True,
+                                                         batch_size=BATCH_SIZE,
+                                                         target_size=(224, 224))
 
-    # data generator on test dataset
-    test_generator = ImageDataGenerator(
+    # data generator on test dataset (here used as validation)
+    test_datagen = ImageDataGenerator(
         rescale=1.0 / 255.0)
 
-    # preprocessing the validation set
-    test_dataset = test_generator.flow_from_directory(TEST_DATA_DIR,
-                                                      classes=DETECTION_CLASSES,
-                                                      shuffle=False,
-                                                      batch_size=BATCH_SIZE,
-                                                      target_size=(224, 224))
+    # preprocessing the test set (here used as validation)
+    test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
+                                                    classes=DETECTION_CLASSES,
+                                                    shuffle=False,
+                                                    batch_size=BATCH_SIZE,
+                                                    target_size=(224, 224))
 
-    # callbacks
-    early_stop = EarlyStopping(monitor='val_loss', patience=10, mode='min', min_delta=0.001, restore_best_weights=True)
-    checkpoint = ModelCheckpoint(filepath=MODEL_LOC, monitor='val_loss', save_best_only=True, mode='min')
+    # introducing callbacks
+    early_stop = EarlyStopping(monitor='val_loss',
+                               patience=10,
+                               mode='min',
+                               min_delta=0.001,
+                               restore_best_weights=True)
 
+    checkpoint = ModelCheckpoint(filepath=MODEL_LOC,  # saves the 'best' model
+                                 monitor='val_loss',
+                                 save_best_only=True,
+                                 mode='min')
+
+    # fit the model
     history = cnn_model.fit(training_dataset,
                             steps_per_epoch=len(training_dataset),
                             validation_data=test_dataset,
@@ -138,9 +147,6 @@ def train_cnn_model(cnn_model):
                             epochs=EPOCHS,
                             callbacks=[early_stop, checkpoint],
                             verbose=1)
-
-    # save the CNN model
-    #cnn_model.save(MODEL_LOC)
 
     return history
 

@@ -33,15 +33,13 @@ def evaluate_cnn_model():
     # load the trained CNN model
     cnn_model = load_model(MODEL_LOC)
 
-    # data generator on test dataset
-    test_datagen = ImageDataGenerator(
-        rescale=1.0 / 255.0)
+    # data generator on test dataset (no data augmentation applied)
+    test_datagen = ImageDataGenerator(rescale=1.0 / 255.0)
 
     # preprocessing the test set
     test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
                                                     target_size=(224, 224),
                                                     classes=DETECTION_CLASSES,
-                                                    class_mode='binary',
                                                     shuffle=False,
                                                     batch_size=BATCH_SIZE)
 
@@ -50,8 +48,10 @@ def evaluate_cnn_model():
 
     # predicting the classes of the test dataset
     y_pred = cnn_model.predict(test_dataset, steps=len(test_dataset), verbose=1)
+
     # Storing the predicted probability
     y_pred_prob = y_pred[:, 1]
+
     # Storing the binary classes for the predictions
     y_pred_binary = y_pred_prob > 0.5
 
