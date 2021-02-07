@@ -66,10 +66,14 @@ Alternatively, you can find the whole analysis in the notebook inside the `noteb
 Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC` score are quite high as shown below. 
 
 ### On Test Dataset (624 images, 294 `Normal` and 390 `Pneumonia`)
-<img width="949" alt="Screenshot 2021-02-07 at 17 07 23" src="https://user-images.githubusercontent.com/76659596/107152321-93f83f80-6967-11eb-95b4-0bfb3ccae6d7.png">
+<p align="center">
+<img width="960" alt="Screenshot 2021-02-07 at 17 07 23" src="https://user-images.githubusercontent.com/76659596/107152321-93f83f80-6967-11eb-95b4-0bfb3ccae6d7.png">
+</p>
 
 ### On Validation Dataset (16 images, 8 `Normal` and 8 `Pneumonia`)
-<img width="981" alt="Screenshot 2021-02-07 at 17 10 07" src="https://user-images.githubusercontent.com/76659596/107152360-ba1ddf80-6967-11eb-90cb-dfaeca31f275.png">
+<p align="center">
+<img width="960" alt="Screenshot 2021-02-07 at 17 10 07" src="https://user-images.githubusercontent.com/76659596/107152360-ba1ddf80-6967-11eb-90cb-dfaeca31f275.png">
+</p>
 
 ## Web Application
 
