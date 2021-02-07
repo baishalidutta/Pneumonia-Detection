@@ -64,9 +64,9 @@ Note that, for evaluation, `cnn_model_evaluation.py` will use all the images con
 Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google collab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
 ## Evaluation 
-Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC` score are quite high as shown below. 
+Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are quite high as shown below. 
 
-### On Test Dataset (624 images, 294 `Normal` and 390 `Pneumonia`)
+### On Test Dataset (624 images, 234 `Normal` and 390 `Pneumonia`)
 <p align="center">
 <img width="960" alt="Screenshot 2021-02-07 at 17 07 23" src="https://user-images.githubusercontent.com/76659596/107152321-93f83f80-6967-11eb-95b4-0bfb3ccae6d7.png">
 </p>
