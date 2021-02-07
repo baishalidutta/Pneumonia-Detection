@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="420" alt="pneumonia-detection-logo" src="https://user-images.githubusercontent.com/76659596/105877774-9de18080-6000-11eb-985a-64591f7aac86.png">
+  <img width="621" alt="Screenshot 2021-02-07 at 17 30 12" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
 </p>
 
 
