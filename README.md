@@ -2,6 +2,13 @@
   <img width="621" alt="Screenshot 2021-02-07 at 17 30 12" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
 </p>
 
+[![baishalidutta - Pneumonia-Detection](https://img.shields.io/static/v1?label=baishalidutta&message=Pneumonia-Detection&color=blue&logo=github)](https://github.com/baishalidutta/Pneumonia-Detection)
+[![License - Apache-2.0](https://img.shields.io/badge/License-Apache-blue)](#license)
+[![Build - Passing](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/baishalidutta/Pneumonia-Detection/runs/1485969918)
+[![GitHub release](https://img.shields.io/github/release/baishalidutta/Pneumonia-Detection?include_prereleases&sort=semver)](https://github.com/baishalidutta/Pneumonia-Detection/releases/)
+![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/baishalidutta/Pneumonia-Detection/issues)
+
 
 ## Motivation
 The Pneumonia disease is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and difficulty in breathing. 
@@ -64,14 +71,17 @@ Note that, for evaluation, `cnn_model_evaluation.py` will use all the images con
 Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google collab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
 ## Evaluation 
+
 Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are quite high as shown below. 
 
 ### On Test Dataset (624 images, 234 `Normal` and 390 `Pneumonia`)
+
 <p align="center">
 <img width="960" alt="Screenshot 2021-02-07 at 17 07 23" src="https://user-images.githubusercontent.com/76659596/107152321-93f83f80-6967-11eb-95b4-0bfb3ccae6d7.png">
 </p>
 
 ### On Validation Dataset (16 images, 8 `Normal` and 8 `Pneumonia`)
+
 <p align="center">
 <img width="960" alt="Screenshot 2021-02-07 at 17 10 07" src="https://user-images.githubusercontent.com/76659596/107152360-ba1ddf80-6967-11eb-90cb-dfaeca31f275.png">
 </p>
@@ -82,10 +92,10 @@ Our model is trained with 96% accuracy on the training dataset. The accuracies o
 
 Baishali Dutta (<a href='mailto:me@itsbaishali.com'>me@itsbaishali.com</a>)
 
-## Contribution
+## Contribution [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/baishalidutta/Pneumonia-Detection/issues)
 
 If you would like to contribute and improve the model further, check out the contribution guideline.
 
-## License
+## License [![License](http://img.shields.io/badge/license-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 This project is licensed under Apache License Version 2.0
