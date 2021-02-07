@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from keras.models import load_model
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import roc_curve, confusion_matrix, \
-    classification_report, roc_auc_score
+    ConfusionMatrixDisplay, classification_report, roc_auc_score
 
 # -------------------------------------------------------------------------
 #                               Configurations
@@ -18,6 +18,7 @@ from sklearn.metrics import roc_curve, confusion_matrix, \
 MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
 DATA_DIR = '../data/'
 TEST_DATA_DIR = DATA_DIR + '/test/'
+VAL_DATA_DIR = DATA_DIR + '/val/'
 BATCH_SIZE = 32
 DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
 
@@ -25,7 +26,7 @@ DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
 # -------------------------------------------------------------------------
 #                         Evaluating trained CNN Model
 # -------------------------------------------------------------------------
-def evaluate_cnn_model():
+def evaluate_cnn_model(evaluation_directory, dataset_type):
     """
     Loads the pre-trained model and executes the model on the test data.
     Prints the model evaluation results and plots the ROC curve
@@ -34,20 +35,20 @@ def evaluate_cnn_model():
     cnn_model = load_model(MODEL_LOC)
 
     # data generator on test dataset (no data augmentation applied)
-    test_datagen = ImageDataGenerator(rescale=1.0 / 255.0)
+    datagen = ImageDataGenerator(rescale=1.0 / 255.0)
 
     # preprocessing the test set
-    test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
-                                                    target_size=(224, 224),
-                                                    classes=DETECTION_CLASSES,
-                                                    shuffle=False,
-                                                    batch_size=BATCH_SIZE)
+    dataset = datagen.flow_from_directory(evaluation_directory,
+                                          target_size=(224, 224),
+                                          classes=DETECTION_CLASSES,
+                                          shuffle=False,
+                                          batch_size=BATCH_SIZE)
 
     # storing the true classes of the test dataset
-    y_true = test_dataset.classes
+    y_true = dataset.classes
 
     # predicting the classes of the test dataset
-    y_pred = cnn_model.predict(test_dataset, steps=len(test_dataset), verbose=1)
+    y_pred = cnn_model.predict(dataset, steps=len(dataset), verbose=1)
 
     # Storing the predicted probability
     y_pred_prob = y_pred[:, 1]
@@ -58,9 +59,18 @@ def evaluate_cnn_model():
     # -------------------------------------------------------------------------
     #                         Model Evaluation Matrices
     # -------------------------------------------------------------------------
-    # confusion Matrix
-    print('\nConfusion Matrix\n -------------------------')
-    print(confusion_matrix(y_true, y_pred_binary))
+    # print and display the confusion matrix
+    cm = confusion_matrix(y_true, y_pred_binary)
+    cm_display = ConfusionMatrixDisplay(cm, display_labels=['Normal', 'Pneumonia'])
+    cm_display.plot(cmap='Blues', colorbar=False)
+
+    print(f'------------- Confusion Matrix for {dataset_type} -------------')
+    print(cm)
+
+    plt.title('Confusion Matrix')
+    plt.savefig(f'../plots/confusion_matrix_{dataset_type}.jpeg')
+
+    # display the confusion matrix
 
     # classification report
     # accuracy: (tp + tn) / (p + n)
@@ -82,7 +92,7 @@ def evaluate_cnn_model():
     plt.plot(fpr, tpr, linestyle='--')
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.savefig('../plots/ROC_Curve.jpeg')
+    plt.savefig(f'../plots/ROC_Curve_{dataset_type}.jpeg')
     plt.show()
 
 
@@ -90,4 +100,6 @@ def evaluate_cnn_model():
 #                               Main Execution
 # -------------------------------------------------------------------------
 if __name__ == '__main__':
-    evaluate_cnn_model()
+    evaluate_cnn_model(TEST_DATA_DIR, 'Test_Dataset')
+    evaluate_cnn_model(VAL_DATA_DIR, 'Validation_Dataset')
+
