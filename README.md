@@ -20,6 +20,7 @@ To increase the efficacy and reach of the diagnosis procedure, we can use machin
 - Keras 2.4.3+
 - scikit-learn 0.24.1+
 - matplotlib 3.3.3+
+- texttable 1.6.3+
 
 ## Dataset
 
