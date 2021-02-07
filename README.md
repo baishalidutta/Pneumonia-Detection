@@ -63,15 +63,24 @@ Note that, for evaluation, `cnn_model_evaluation.py` will use all the images con
 Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google collab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
 ## Evaluation 
-This model 
+Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC` score are quite high as shown below. 
 
+### On Test Dataset (624 images, 294 `Normal` and 390 `Pneumonia`)
+<img width="949" alt="Screenshot 2021-02-07 at 17 07 23" src="https://user-images.githubusercontent.com/76659596/107152321-93f83f80-6967-11eb-95b4-0bfb3ccae6d7.png">
+
+### On Validation Dataset (16 images, 8 `Normal` and 8 `Pneumonia`)
+<img width="981" alt="Screenshot 2021-02-07 at 17 10 07" src="https://user-images.githubusercontent.com/76659596/107152360-ba1ddf80-6967-11eb-90cb-dfaeca31f275.png">
 
 ## Web Application
 
 ## Developer
 
+Baishali Dutta (<a href='mailto:me@itsbaishali.com'>me@itsbaishali.com</a>)
+
 ## Contribution
+
+If you would like to contribute and improve the model further, check out the contribution guideline.
 
 ## License
 
-
+This project is licensed under Apache License Version 2.0
