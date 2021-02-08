@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="621" alt="Screenshot 2021-02-07 at 17 30 12" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
+  <img width="621" alt="logo" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
 </p>
 
 [![baishalidutta - Pneumonia-Detection](https://img.shields.io/static/v1?label=baishalidutta&message=Pneumonia-Detection&color=blue&logo=github)](https://github.com/baishalidutta/Pneumonia-Detection)
@@ -9,6 +9,9 @@
 ![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/baishalidutta/Pneumonia-Detection/issues)
 
+<p align="center">
+  <img width="621" alt="web-app-screencast" src="https://user-images.githubusercontent.com/76659596/107169811-14965a80-69bf-11eb-8f04-df3965eea358.gif">
+</p>
 
 ## Motivation
 The Pneumonia disease is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and difficulty in breathing. 
@@ -87,6 +90,15 @@ Our model is trained with 96% accuracy on the training dataset. The accuracies o
 </p>
 
 ## Web Application
+
+To run the web application locally, go to the `webapp` directory and execute:
+
+`python3 web_app.py`
+
+This will start a local server that you can access in your browser. You can either upload/drag a new X-ray image or select any test X-ray images from the examples below.
+
+You can, alternatively, try out the hosted web application on <b>AWS</b> [here](#).
+
 
 ## Developer
 
