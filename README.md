@@ -14,13 +14,13 @@
 </p>
 
 ## Motivation
-The Pneumonia disease is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and difficulty in breathing. 
+Pneumonia is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be a bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and breathing difficulty. 
 
-This disease is responsible for over 15% of all deaths of children under 5 years old worldwide. This proves the severity of this disease and the need of accurate detection. 
+This disease is responsible for over 15% of all deaths of children under five years old worldwide. This proves the severity of this disease and the need for accurate detection. 
 
-The most commonly used method to diagnose pneumonia is through chest radiograph or chest X-ray which depicts the infection as an increased opacity in certain area(s) of the lungs.
+The most commonly used method to diagnose pneumonia is through chest radiograph or chest X-ray, which depicts the infection as an increased opacity in the lungs' specific area(s).
 
-To increase the efficacy and reach of the diagnosis procedure, we can use machine learning alogorithms to identify abnormalities in the chest X-ray images. In this model, a large number of chest X-ray images (both normal and pneumonia) are fed to build `Convolutional Neural Network (CNN)` model for fulfilling the purpose. 
+To increase the diagnosis procedure's efficacy and reach, we can use machine learning algorithms to identify abnormalities in the chest X-ray images. In this model, many chest X-ray images (both normal and pneumonia) are fed to build `Convolutional Neural Network (CNN)` model for fulfilling the purpose. 
 
 
 ## Requirements
@@ -35,7 +35,7 @@ To increase the efficacy and reach of the diagnosis procedure, we can use machin
 
 ## Dataset
 
-The dataset can be downloaded from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/). Use the underlying download link to diwnload the dataset.
+You can download the dataset from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/). Use the underlying download link to download the dataset.
 
 ### Instructions to follow
 
@@ -72,11 +72,11 @@ Enter into the `source` directory to execute the following source codes.
 
 Note that, for evaluation, `cnn_model_evaluation.py` will use all the images contained inside both `test` and `val` subdirectories (inside `data` directory).
 
-Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google colab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
+Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use either `jupyter notebook` or `google colab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
 ## Evaluation 
 
-Our model is trained with 96% accuracy on the training dataset. The accuracies of the model on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are quite high as shown below. 
+Our model is trained with 96% accuracy on the training dataset. The model's accuracy on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are relatively high, as shown below. 
 
 ### On Test Dataset (624 images, 234 `Normal` and 390 `Pneumonia`)
 
