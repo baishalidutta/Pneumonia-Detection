@@ -72,7 +72,7 @@ Enter into the `source` directory to execute the following source codes.
 
 Note that, for evaluation, `cnn_model_evaluation.py` will use all the images contained inside both `test` and `val` subdirectories (inside `data` directory).
 
-Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google collab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
+Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use eithr `jupyter notebook` or `google colab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
 ## Evaluation 
 
