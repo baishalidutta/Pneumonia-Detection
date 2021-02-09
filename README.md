@@ -31,6 +31,7 @@ To increase the efficacy and reach of the diagnosis procedure, we can use machin
 - scikit-learn 0.24.1+
 - matplotlib 3.3.3+
 - texttable 1.6.3+
+- gradio 1.5.3+
 
 ## Dataset
 
