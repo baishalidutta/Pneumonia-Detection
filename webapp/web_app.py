@@ -33,8 +33,8 @@ image_input = gr.inputs.Image(type="file")
 
 title = "Pneumonia Detection"
 description = "This application uses a Convolutional Neural Network (CNN) model to predict whether a chosen X-ray shows if " \
-              "the person has penumonia diesease or not. To check the model prediction, here are the true labels of the " \
-              "provided examples below: the first 4 images belong to normal whereas the last 4 images are of pneumania " \
+              "the person has pneumonia disease or not. To check the model prediction, here are the true labels of the " \
+              "provided examples below: the first 4 images belong to normal whereas the last 4 images are of pneumonia " \
               "category. More specifically, the 5th and 6th images are viral pneumonia infection in nature whereas " \
               "the last 2 images are bacterial infection in nature."
 
