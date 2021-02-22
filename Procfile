@@ -1,1 +1,1 @@
-web: python webapp/web_app.py
+web: sh -c 'cd ./webapp && python web_app.py'
