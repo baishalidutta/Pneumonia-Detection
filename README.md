@@ -1,19 +1,5 @@
-<p align="center">
-  <img width="621" alt="logo" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
-</p>
-
-[![baishalidutta - Pneumonia-Detection](https://img.shields.io/static/v1?label=baishalidutta&message=Pneumonia-Detection&color=blue&logo=github)](https://github.com/baishalidutta/Pneumonia-Detection)
-[![License - Apache-2.0](https://img.shields.io/badge/License-Apache-blue)](#license)
-[![Build - Passing](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/baishalidutta/Pneumonia-Detection/runs/1485969918)
-[![GitHub release](https://img.shields.io/github/release/baishalidutta/Pneumonia-Detection?include_prereleases&sort=semver)](https://github.com/baishalidutta/Pneumonia-Detection/releases/)
-![Python](https://img.shields.io/badge/python-v3.7.x-blue.svg)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/baishalidutta/Pneumonia-Detection/issues)
-
-<p align="center">
-  <img width="621" alt="web-app-screencast" src="https://user-images.githubusercontent.com/76659596/107169811-14965a80-69bf-11eb-8f04-df3965eea358.gif">
-</p>
-
 ## Motivation
+
 Pneumonia is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be a bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and breathing difficulty. 
 
 This disease is responsible for over 15% of all deaths of children under five years old worldwide. This proves the severity of this disease and the need for accurate detection. 

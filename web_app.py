@@ -14,7 +14,7 @@ from keras.preprocessing import image
 # -------------------------------------------------------------------------
 #                               Configurations
 # -------------------------------------------------------------------------
-MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
+MODEL_LOC = 'pneumonia_detection_cnn_model.h5'
 
 # load the trained CNN model
 cnn_model = load_model(MODEL_LOC)
@@ -50,5 +50,6 @@ gr.Interface(fn=make_prediction,
                        ["image1_pneumonia_bacteria.jpeg"],
                        ["image2_pneumonia_bacteria.jpeg"]],
              title=title,
-             description=description) \
-    .launch()
+             description=description,
+             article="http://raw.githubusercontent.com/baishalidutta/Pneumonia-Detection/gradio/README.md") \
+    .launch(share=True)
