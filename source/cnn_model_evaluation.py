@@ -102,4 +102,3 @@ def evaluate_cnn_model(evaluation_directory, dataset_type):
 if __name__ == '__main__':
     evaluate_cnn_model(TEST_DATA_DIR, 'Test_Dataset')
     evaluate_cnn_model(VAL_DATA_DIR, 'Validation_Dataset')
-
