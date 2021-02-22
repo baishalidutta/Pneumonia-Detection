@@ -1,1 +1,1 @@
-web: sh -c 'cd ./webapp && python web_app.py'
+web: sh -c 'source setup.sh && cd ./webapp && python web_app.py'

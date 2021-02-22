@@ -50,6 +50,5 @@ gr.Interface(fn=make_prediction,
                        ["image1_pneumonia_bacteria.jpeg"],
                        ["image2_pneumonia_bacteria.jpeg"]],
              title=title,
-             description=description,
-             server_name="0.0.0.0") \
+             description=description) \
     .launch()
