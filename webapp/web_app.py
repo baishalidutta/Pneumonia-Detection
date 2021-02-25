@@ -4,7 +4,7 @@ __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
 # -------------------------------------------------------------------------
-#                           Importing the libraries
+#                           Importing Libraries
 # -------------------------------------------------------------------------
 import gradio as gr
 import numpy as np
