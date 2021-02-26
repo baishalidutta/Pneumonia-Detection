@@ -64,13 +64,13 @@ Enter into the `source` directory to execute the following source codes.
 
 * To generate the model on your own, run
 
-`python3 cnn_training_model.py` 
+`python3 model_training.py` 
 
 * To evaluate any dataset using the pre-trained model (in the `model` directory), run
 
-`python3 cnn_model_evaluation.py`
+`python3 model_evaluation.py`
 
-Note that, for evaluation, `cnn_model_evaluation.py` will use all the images contained inside both `test` and `val` subdirectories (inside `data` directory).
+Note that, for evaluation, `model_evaluation.py` will use all the images contained inside both `test` and `val` subdirectories (inside `data` directory).
 
 Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use either `jupyter notebook` or `google colab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
 
