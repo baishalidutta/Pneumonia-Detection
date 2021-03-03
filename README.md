@@ -45,7 +45,11 @@ You can download the dataset from [kaggle](https://www.kaggle.com/paultimothymoo
 
 The number of images belonging to both classes (`Normal` and `Pneumonia`) in the `train`, `test` and `val` datasets are -
 
-<img width="326" alt="Screenshot 2021-02-07 at 16 40 00" src="https://user-images.githubusercontent.com/76659596/107151515-4083f280-6963-11eb-84c7-f2a23cc24134.png">
+| Dataset Type | Normal | Pneumonia |
+|--------------|--------|-----------|
+| Training     | 1341   | 3875      |
+| Test         | 234    | 390       |
+| Validation   | 8      | 8         |
 
 
 ## Installation
