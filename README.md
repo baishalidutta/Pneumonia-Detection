@@ -2,7 +2,7 @@
   <img width="621" alt="logo" src="https://user-images.githubusercontent.com/76659596/107152793-30234600-696a-11eb-8827-56cb0c3a7578.png">
 </p>
 
-[![baishalidutta - Pneumonia-Detection](https://img.shields.io/static/v1?label=baishalidutta&message=Pneumonia-Detection&color=blue&logo=github)](https://github.com/baishalidutta/Pneumonia-Detection)
+[![online hosted application](https://img.shields.io/static/v1?label=Try-It-Out&message=Online-Hosted-Application&color=yellow&logo=godot-engine)](https://gradio.app/g/baishalidutta/Pneumonia-Detection)
 [![License - Apache-2.0](https://img.shields.io/badge/License-Apache-blue)](#license)
 [![Build - Passing](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/baishalidutta/Pneumonia-Detection/runs/1485969918)
 [![GitHub release](https://img.shields.io/github/release/baishalidutta/Pneumonia-Detection?include_prereleases&sort=semver)](https://github.com/baishalidutta/Pneumonia-Detection/releases/)
