@@ -1,4 +1,4 @@
-# Pneumonia-Detection Data Source
+# Pneumonia Detection Data Source
 
 The dataset can be downloaded from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/download).
 
