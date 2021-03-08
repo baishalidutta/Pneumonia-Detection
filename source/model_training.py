@@ -4,7 +4,7 @@ __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
 # -------------------------------------------------------------------------
-#                           Importing the libraries
+#                           Import the libraries
 # -------------------------------------------------------------------------
 import os
 
@@ -15,23 +15,14 @@ from keras.layers import Conv2D, MaxPooling2D, SeparableConv2D, \
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 
+from config import *
+
 # MacOS specific issue for OpenMP runtime (workaround)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
-# -------------------------------------------------------------------------
-#                               Configurations
-# -------------------------------------------------------------------------
-MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
-DATA_DIR = '../data/'
-TRAINING_DATA_DIR = DATA_DIR + '/train/'
-TEST_DATA_DIR = DATA_DIR + '/test/'
-DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
-BATCH_SIZE = 32
-EPOCHS = 100
-
 
 # -------------------------------------------------------------------------
-#                   Building the CNN Model Architecture
+#                      Build CNN Model Architecture
 # -------------------------------------------------------------------------
 def build_cnn_model():
     """

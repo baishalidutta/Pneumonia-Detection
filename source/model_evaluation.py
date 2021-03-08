@@ -4,7 +4,7 @@ __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
 # -------------------------------------------------------------------------
-#                           Importing the libraries
+#                           Import Libraries
 # -------------------------------------------------------------------------
 import matplotlib.pyplot as plt
 from keras.models import load_model
@@ -12,19 +12,11 @@ from keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import roc_curve, confusion_matrix, \
     ConfusionMatrixDisplay, classification_report, roc_auc_score
 
-# -------------------------------------------------------------------------
-#                               Configurations
-# -------------------------------------------------------------------------
-MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
-DATA_DIR = '../data/'
-TEST_DATA_DIR = DATA_DIR + '/test/'
-VAL_DATA_DIR = DATA_DIR + '/val/'
-BATCH_SIZE = 32
-DETECTION_CLASSES = ('NORMAL', 'PNEUMONIA')
+from config import *
 
 
 # -------------------------------------------------------------------------
-#                         Evaluating trained CNN Model
+#                         Evaluate Trained CNN Model
 # -------------------------------------------------------------------------
 def evaluate_cnn_model(evaluation_directory, dataset_type):
     """

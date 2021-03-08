@@ -4,17 +4,14 @@ __license__ = "Apache License 2.0"
 __version__ = "0.1"
 
 # -------------------------------------------------------------------------
-#                           Importing Libraries
+#                           Import Libraries
 # -------------------------------------------------------------------------
 import gradio as gr
 import numpy as np
 from keras.models import load_model
 from keras.preprocessing import image
 
-# -------------------------------------------------------------------------
-#                               Configurations
-# -------------------------------------------------------------------------
-MODEL_LOC = '../model/pneumonia_detection_cnn_model.h5'
+from source.config import *
 
 # load the trained CNN model
 cnn_model = load_model(MODEL_LOC)
