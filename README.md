@@ -25,7 +25,7 @@ To increase the diagnosis procedure's efficacy and reach, we can leverage machin
 
 ## Requirements
 
-- Python 3.7.x
+- Python 3.7.0+
 - Tensorflow 2.4.1+
 - Keras 2.4.3+
 - scikit-learn 0.24.1+
