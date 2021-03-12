@@ -29,23 +29,23 @@ def evaluate_cnn_model(evaluation_directory, dataset_type):
     # data generator on test dataset (no data augmentation applied)
     datagen = ImageDataGenerator(rescale=1.0 / 255.0)
 
-    # preprocessing the test set
+    # preprocess the test set
     dataset = datagen.flow_from_directory(evaluation_directory,
                                           target_size=(224, 224),
                                           classes=DETECTION_CLASSES,
                                           shuffle=False,
                                           batch_size=BATCH_SIZE)
 
-    # storing the true classes of the test dataset
+    # store the true classes of the test dataset
     y_true = dataset.classes
 
-    # predicting the classes of the test dataset
+    # predict the classes of the test dataset
     y_pred = cnn_model.predict(dataset, steps=len(dataset), verbose=1)
 
-    # Storing the predicted probability
+    # store the predicted probability
     y_pred_prob = y_pred[:, 1]
 
-    # Storing the binary classes for the predictions
+    # store the binary classes for the predictions
     y_pred_binary = y_pred_prob > 0.5
 
     # -------------------------------------------------------------------------

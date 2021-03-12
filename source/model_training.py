@@ -172,14 +172,14 @@ def plot_training_history(history):
     plt.show()
 
 
-# -------------------------------------------------------------------------
-#                               Main Execution
-# -------------------------------------------------------------------------
 def execute():
     cnn_model = build_cnn_model()
     history = train_cnn_model(cnn_model)
     plot_training_history(history)
 
 
+# -------------------------------------------------------------------------
+#                               Main Execution
+# -------------------------------------------------------------------------
 if __name__ == '__main__':
     execute()
