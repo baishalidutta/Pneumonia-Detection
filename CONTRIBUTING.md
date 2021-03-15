@@ -1,7 +1,7 @@
 # How to Contribute
 
 First of all, thanks for considering to contribute. We appreciate the time and effort you want to
-spend helping to improve things around here. And help we can use :-)
+spend helping to improve things around here. And help we can use 🙂
 
 Here is a (non-exclusive, non-prioritized) list of things you might be able to help us with:
 
@@ -35,13 +35,13 @@ __version__ = "0.1"
 
 ### How to Contribute
 
-The easiest way to contribute code/patches/whatever is by creating a GitHub pull request (PR). When you do make sure that you *Sign-off* your commits.
+The easiest way to contribute code/patches/whatever is by creating a GitHub pull request (PR). When you do make sure that you `Sign-off your commits.
 
-You do this by adding the `-s` flag when you make the commit(s), e.g.
+You can do this by adding the `-s` flag when you add the commit(s), e.g.
 
-    $> git commit -s -m "Let's do it."
+    git commit -s -m "Let's do it"
 
-## Making your Changes
+## Making your changes
 
 * Fork the repository on GitHub
 * Create a new branch for your changes
@@ -55,10 +55,10 @@ You do this by adding the `-s` flag when you make the commit(s), e.g.
 * Make sure you use the `-s` flag when committing as explained above
 * Push your changes to your branch in your forked repository
 
-## Submitting the Changes
+## Submitting the changes
 
 Submit a pull request via the normal GitHub UI.
 
-## After Submitting
+## After submitting the PR
 
 * Do not use your branch for any other development, otherwise further changes that you make will be visible in the PR.
