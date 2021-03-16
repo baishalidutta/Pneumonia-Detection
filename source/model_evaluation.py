@@ -53,7 +53,7 @@ def evaluate_cnn_model(evaluation_directory, dataset_type):
     # -------------------------------------------------------------------------
     # print and display the confusion matrix
     cm = confusion_matrix(y_true, y_pred_binary)
-    cm_display = ConfusionMatrixDisplay(cm, display_labels=['Normal', 'Pneumonia'])
+    cm_display = ConfusionMatrixDisplay(cm, display_labels=DETECTION_CLASSES)
     cm_display.plot(cmap='Blues', colorbar=False)
 
     print(f'------------- Confusion Matrix for {dataset_type} -------------')
