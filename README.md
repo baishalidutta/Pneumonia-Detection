@@ -35,7 +35,7 @@ To increase the diagnosis procedure's efficacy and reach, we can leverage machin
 
 ## Dataset
 
-You can download the dataset from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/). Use the underlying download link to download the dataset.
+You can download the dataset from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/). Use the download link to download the dataset.
 
 ### Instructions to follow
 
