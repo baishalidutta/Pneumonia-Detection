@@ -77,7 +77,7 @@ def build_cnn_model():
     #  Display model
     cnn_model.summary()
 
-    # compile model
+    # Compile model
     cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
     return cnn_model
@@ -108,8 +108,7 @@ def train_cnn_model(cnn_model):
                                                          target_size=(224, 224))
 
     # data generator on test dataset (here used as validation)
-    test_datagen = ImageDataGenerator(
-        rescale=1.0 / 255.0)
+    test_datagen = ImageDataGenerator(rescale=1.0 / 255.0)
 
     # preprocessing the test set (here used as validation)
     test_dataset = test_datagen.flow_from_directory(TEST_DATA_DIR,
