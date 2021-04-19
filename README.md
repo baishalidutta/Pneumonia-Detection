@@ -80,7 +80,7 @@ Alternatively, you can find the whole analysis in the notebook inside the `noteb
 
 ## Evaluation 
 
-Our model is trained with 96% accuracy on the training dataset. The model's accuracy on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are relatively high, as shown below. 
+The model is trained with `96%` accuracy on the training dataset. The model's accuracy on the `test` and `val` datasets are `91%` and `88%` respectively. In both cases, the `f1-score` and `ROC_AUC Score` are relatively high, as shown below. 
 
 ### On Test Dataset (624 images, 234 `Normal` and 390 `Pneumonia`)
 
