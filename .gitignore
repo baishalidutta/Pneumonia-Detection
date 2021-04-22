@@ -134,3 +134,4 @@ data/test/
 data/train/
 data/val/
 .DS_Store
+.idea/
