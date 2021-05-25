@@ -8,8 +8,8 @@ __version__ = "0.1"
 # -------------------------------------------------------------------------
 import gradio as gr
 import numpy as np
-from keras.models import load_model
-from keras.preprocessing import image
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 
 # -------------------------------------------------------------------------
 #                               Configurations
