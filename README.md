@@ -64,7 +64,7 @@ The number of images belonging to both classes (`Normal` and `Pneumonia`) in the
 
 ## Usage
 
-Enter into the `source` directory to execute the following source codes.
+In the `source` directory, you can execute the following source codes:
 
 * To generate the model on your own, run
 
