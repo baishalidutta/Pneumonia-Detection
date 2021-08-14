@@ -96,7 +96,7 @@ The model is trained with `96%` accuracy on the training dataset. The model's ac
 
 ## Web Application
 
-To run the web application locally, go to the `webapp` directory and execute:
+To run the web application locally, execute the following in the `webapp` directory and:
 
 `python3 web_app.py`
 
