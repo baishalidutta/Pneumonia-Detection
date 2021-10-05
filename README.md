@@ -19,47 +19,6 @@ To increase the diagnosis procedure's efficacy and reach, we can leverage machin
 - texttable 1.6.3+
 - gradio 1.5.3+
 
-## Dataset
-
-You can download the dataset from [kaggle](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/). Use the underlying download link to download the dataset.
-
-### Instructions to follow
-
-* Extract the archive
-* You will find several directories in it
-* Copy the `chest-xray` directory contents (`train`, `test` and `val` subdirectories) to the `data` folder
-
-The number of images belonging to both classes (`Normal` and `Pneumonia`) in the `train`, `test` and `val` datasets are -
-
-<img width="326" alt="Screenshot 2021-02-07 at 16 40 00" src="https://user-images.githubusercontent.com/76659596/107151515-4083f280-6963-11eb-84c7-f2a23cc24134.png">
-
-
-## Installation
-
-* Clone the repository 
-
-`git clone https://github.com/baishalidutta/Pneumonia-Detection.git`
-
-* Install the required libraries
-
-`pip3 install -r requirements.txt`
-
-## Usage
-
-Enter into the `source` directory to execute the following source codes.
-
-* To generate the model on your own, run
-
-`python3 cnn_training_model.py` 
-
-* To evaluate any dataset using the pre-trained model (in the `model` directory), run
-
-`python3 cnn_model_evaluation.py`
-
-Note that, for evaluation, `cnn_model_evaluation.py` will use all the images contained inside both `test` and `val` subdirectories (inside `data` directory).
-
-Alternatively, you can find the whole analysis in the notebook inside the `notebook` directory. To open the notebook, use either `jupyter notebook` or `google colab` or any other IDE that supports notebook feature such as `PyCharm Professional`.
-
 ## Evaluation 
 
 Our model is trained with 96% accuracy on the training dataset. The model's accuracy on the `test` and `val` datasets are 91% and 88% respectively. In both cases, the `f1-score` and `ROC_AUC Score` are relatively high, as shown below. 
@@ -88,12 +47,6 @@ You can, alternatively, try out the hosted web application [here](https://gradio
 
 ## Developer
 
-Baishali Dutta (<a href='mailto:me@itsbaishali.com'>me@itsbaishali.com</a>)
+Chungu Chipimo Chama(<a href='mailto:chungu424@gmail.com'>chungu424@gmail.com</a>)
 
-## Contribution [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/baishalidutta/Pneumonia-Detection/issues)
 
-If you would like to contribute and improve the model further, check out the [Contribution Guide](https://github.com/baishalidutta/Pneumonia-Detection/blob/main/CONTRIBUTING.md)
-
-## License [![License](http://img.shields.io/badge/license-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-
-This project is licensed under Apache License Version 2.0
