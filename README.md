@@ -35,18 +35,8 @@ Our model is trained with 96% accuracy on the training dataset. The model's accu
 <img width="960" alt="Screenshot 2021-02-07 at 17 10 07" src="https://user-images.githubusercontent.com/76659596/107152360-ba1ddf80-6967-11eb-90cb-dfaeca31f275.png">
 </p>
 
-## Web Application
-
-To run the web application locally, go to the `webapp` directory and execute:
-
-`python3 web_app.py`
-
-This will start a local server that you can access in your browser. You can either upload/drag a new X-ray image or select any test X-ray images from the examples below.
-
-You can, alternatively, try out the hosted web application [here](https://gradio.app/g/baishalidutta/Pneumonia-Detection).
-
 ## Developer
 
-Chungu Chipimo Chama(<a href='mailto:chungu424@gmail.com'>chungu424@gmail.com</a>)
+Chungu Chipimo Chama (<a href='mailto:chungu424@gmail.com'>chungu424@gmail.com</a>)
 
 
