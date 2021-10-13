@@ -15,7 +15,7 @@
 
 ## Motivation
 
-Pneumonia is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be a bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and breathing difficulty. 
+Pneumonia is a lung infection (🫁) that inflames the air sacs in one or both lungs. This infection arises when the air sacs get filled with fluid or pus (purulent material). It can be a bacterial or viral infection. The main symptoms are - cough with phlegm or pus, fever, chills, and breathing difficulty.
 
 This disease is responsible for over 15% of all deaths of children under five years old worldwide. This proves the severity of this disease and the need for accurate detection. 
 
