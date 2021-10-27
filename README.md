@@ -18,6 +18,7 @@ To increase the diagnosis procedure's efficacy and reach, we can leverage machin
 - matplotlib 3.3.3+
 - texttable 1.6.3+
 - gradio 1.5.3+
+- matplotlib 1.5.6+
 
 ## Evaluation 
 
