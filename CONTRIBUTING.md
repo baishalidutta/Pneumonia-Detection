@@ -1,7 +1,7 @@
 # Contribution Guide
 
-First of all, thanks for considering to contribute. We appreciate the time and effort you want to
-spend helping to improve things around here. And help we can use 🙂
+First of all, thanks for considering to contribute. I appreciate the time and effort you want to
+spend helping to improve things around here. And help I can use 🙂
 
 Here is a (non-exclusive, non-prioritized) list of things you might be able to help us with:
 
